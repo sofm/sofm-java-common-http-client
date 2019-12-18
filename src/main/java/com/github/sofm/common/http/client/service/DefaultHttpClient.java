@@ -52,7 +52,7 @@ public class DefaultHttpClient implements HttpClient {
 
   @Override
   public HttpResult download(String url, String storageFolder) {
-    HttpResult result = new HttpResult(this.httpProps.getDefaultHttpCode());
+    HttpResult result = new HttpResult(httpProps.getDefaultHttpCode());
     CloseableHttpClient httpClient = null;
     HttpGet getMethod = new HttpGet(url);
 
@@ -122,7 +122,7 @@ public class DefaultHttpClient implements HttpClient {
 
   @Override
   public HttpResult query(String url, int hardTimeout, boolean isLazy) {
-    HttpResult result = new HttpResult(this.httpProps.getDefaultHttpCode());
+    HttpResult result = new HttpResult(httpProps.getDefaultHttpCode());
     CloseableHttpClient httpClient = null;
     final HttpGet getMethod = new HttpGet(url);
     TimerTask task =
@@ -145,7 +145,7 @@ public class DefaultHttpClient implements HttpClient {
     } catch (IOException ex) {
       log.error("(query)ex: {}", ExceptionUtil.getFullStackTrace(ex, true));
     } finally {
-      this.destroy(httpClient, null);
+      destroy(httpClient, null);
     }
 
     return result;
